@@ -964,13 +964,23 @@
 
     <!-- 價格 -->
     <section class="section">
-      <div class="price-section">
-        <div class="price-badge">🐦 早鳥優惠中</div>
-        <div class="price-main"><span>NT$</span> 3,900</div>
-        <div class="price-original">原價 NT$ 5,000</div>
-        <div class="price-save">🔥 現省 $1,100！</div>
-        <div class="price-deadline">
-          ⏰ 早鳥截止：<strong>2026/01/19</strong>
+      <div class="price-section" id="priceSection">
+        <!-- 早鳥版本 (預設顯示) -->
+        <div id="earlyBirdPrice">
+          <div class="price-badge">🐦 早鳥優惠中</div>
+          <div class="price-main"><span>NT$</span> 3,900</div>
+          <div class="price-original">原價 NT$ 5,000</div>
+          <div class="price-save">🔥 現省 $1,100！</div>
+          <div class="price-deadline">
+            ⏰ 早鳥截止：<strong>2026/01/19</strong>
+            <div id="countdown" style="margin-top: 8px; font-size: 1.1rem; color: #DC2626;"></div>
+          </div>
+        </div>
+        <!-- 原價版本 (早鳥結束後顯示) -->
+        <div id="regularPrice" style="display: none;">
+          <div class="price-badge" style="background: #6B7280;">📌 一般價格</div>
+          <div class="price-main"><span>NT$</span> 5,000</div>
+          <div style="color: var(--text-light); margin-top: 8px;">早鳥優惠已結束</div>
         </div>
       </div>
     </section>
@@ -1265,6 +1275,53 @@
     // ===== 設定 =====
     // TODO: 請改成你的 n8n Webhook URL
     const N8N_WEBHOOK_URL = 'https://nickleo9.zeabur.app/webhook/course-registration2026';
+
+    // ===== 早鳥倒數計時器 =====
+    const EARLY_BIRD_DEADLINE = new Date('2026-01-19T23:59:59+08:00');
+    const EARLY_BIRD_PRICE = 3900;
+    const REGULAR_PRICE = 5000;
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = EARLY_BIRD_DEADLINE - now;
+
+      const countdownEl = document.getElementById('countdown');
+      const earlyBirdEl = document.getElementById('earlyBirdPrice');
+      const regularPriceEl = document.getElementById('regularPrice');
+      const paymentPriceEls = document.querySelectorAll('.payment-option-price');
+
+      if (diff <= 0) {
+        // 早鳥已結束
+        if (earlyBirdEl) earlyBirdEl.style.display = 'none';
+        if (regularPriceEl) regularPriceEl.style.display = 'block';
+        // 更新付款區塊價格
+        paymentPriceEls.forEach(el => {
+          if (el.textContent.includes('3,900')) {
+            el.innerHTML = 'NT$ 5,000';
+          }
+        });
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      if (countdownEl) {
+        if (days > 0) {
+          countdownEl.textContent = `⏳ 剩餘 ${days} 天 ${hours} 小時 ${minutes} 分`;
+        } else if (hours > 0) {
+          countdownEl.textContent = `⏳ 剩餘 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
+        } else {
+          countdownEl.textContent = `⏳ 剩餘 ${minutes} 分 ${seconds} 秒`;
+        }
+      }
+    }
+
+    // 初始化倒數計時器
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // ===== FAQ 互動 =====
     document.querySelectorAll('.faq-q').forEach(q => {
