@@ -1123,30 +1123,19 @@
             setTimeout(() => ecpayForm.submit(), 1000);
             
           } else {
-            // 顯示成功訊息
-            form.style.display = 'none';
-            const successSection = document.getElementById('successSection');
-            const successText = document.getElementById('successText');
+            // 跳轉到成功頁面
+            const baseUrl = 'https://nickleo051216.github.io/n8n2026course/course-success.html';
+            let type = 'default';
+            let amount = '3,900';
             
             if (paymentChoice === 'payLater') {
-              successText.innerHTML = `
-                感謝你的報名！確認信已寄到 <strong>${formData.email}</strong><br><br>
-                我們會在 <strong>1/19 前</strong>通知你是否確定開課，<br>
-                届時請於 3 天內完成付款，即可享早鳥價 $3,900！
-              `;
+              type = 'wait';
             } else if (payMethod === 'bank') {
-              successText.innerHTML = `
-                報名登記完成！<br><br>
-                請於 <strong>3 天內</strong>完成匯款 <strong>NT$ 3,900</strong><br>
-                匯款後請透過 Line 通知我們，以便核對款項。<br><br>
-                訂單編號：<strong>${result.orderId || ''}</strong>
-              `;
-            } else {
-              successText.innerHTML = `報名成功！請留意 Email 通知。`;
+              type = 'bank';
             }
             
-            successSection.classList.add('show');
-            document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+            const successUrl = `${baseUrl}?type=${type}&order=${result.orderId || ''}&name=${encodeURIComponent(formData.name)}&amount=${amount}`;
+            window.location.href = successUrl;
           }
         } else {
           alert(result.message || result.error || '發生錯誤，請稍後再試');
