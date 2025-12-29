@@ -1400,30 +1400,27 @@
       const payMethod = paymentChoice === 'payNow' ? form.payMethod.value : 'waitConfirm';
 
       const formData = {
-        // 基本欄位（配合你原本 n8n 的命名）
+        // === 基本資料 ===
         name: form.name.value,
         email: form.email.value,
         phone: form.phone.value,
         line: form.line.value || '',
-        company: '',
-        title: '',
-        course: 'ZN Studio｜n8n 實作陪跑班（2026/02/07）',
-        qty: '1',
-        payMethod: payMethod,
-        ecpayMethod: payMethod === 'ecpay' ? 'Credit' : '',
-        bankLast5: form.bankLast5 ? form.bankLast5.value : '',
-        invType: 'no',
-        invEmail: '',
-        vatTitle: '',
-        vatNo: '',
-        remark: form.remark.value || '',
-        // 額外欄位
         occupation: form.occupation.value || '',
+
+        // === 課程資訊 ===
+        course: 'ZN Studio｜n8n 實作陪跑班（2026/02/07）',
+
+        // === 付款資訊 ===
+        paymentChoice: paymentChoice,
+        payMethod: payMethod,
+        bankLast5: form.bankLast5 ? form.bankLast5.value : '',
+
+        // === 問卷調查 ===
         n8nSetup: form.n8nSetup.value,
         n8nLevel: form.n8nLevel.value,
         wantedBot: form.wantedBot.value,
         source: form.source.value || '',
-        paymentChoice: paymentChoice
+        remark: form.remark.value || ''
       };
 
       loadingOverlay.classList.add('show');
