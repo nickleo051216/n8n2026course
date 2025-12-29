@@ -1068,6 +1068,21 @@
           <input type="text" class="form-input" name="line" placeholder="方便課前聯繫">
         </div>
 
+        <div class="form-group">
+          <label class="form-label">你的職業/產業？（選填）</label>
+          <select class="form-select" name="occupation">
+            <option value="">請選擇</option>
+            <option value="行銷/社群經營">行銷 / 社群經營</option>
+            <option value="電商/業務銷售">電商 / 業務銷售</option>
+            <option value="工程師/技術人員">工程師 / 技術人員</option>
+            <option value="設計/創作者">設計 / 創作者</option>
+            <option value="行政/人資/財務">行政 / 人資 / 財務</option>
+            <option value="教育/學生">教育 / 學生</option>
+            <option value="自由工作者/創業">自由工作者 / 創業</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+
         <!-- n8n 狀況 -->
         <div class="form-group">
           <label class="form-label">你目前 n8n 的架設狀況？<span class="required">*</span></label>
@@ -1403,6 +1418,7 @@
         vatNo: '',
         remark: form.remark.value || '',
         // 額外欄位
+        occupation: form.occupation.value || '',
         n8nSetup: form.n8nSetup.value,
         n8nLevel: form.n8nLevel.value,
         wantedBot: form.wantedBot.value,
