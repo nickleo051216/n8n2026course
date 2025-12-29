@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,45 +22,64 @@
       --error: #EF4444;
       --border: #E5E7EB;
     }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
     }
-    
+
     /* Overlay */
     .overlay {
       display: none;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255,255,255,0.97);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.97);
       z-index: 9999;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
-    .overlay.show { display: flex; }
+
+    .overlay.show {
+      display: flex;
+    }
+
     .overlay.ecpay {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
     }
+
     .spinner {
-      width: 50px; height: 50px;
+      width: 50px;
+      height: 50px;
       border: 4px solid var(--border);
       border-top-color: var(--primary);
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+
     .overlay.ecpay .spinner {
-      border-color: rgba(255,255,255,0.3);
+      border-color: rgba(255, 255, 255, 0.3);
       border-top-color: white;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     /* Hero */
     .hero {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -68,60 +88,72 @@
       text-align: center;
       position: relative;
     }
+
     .hero::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 60px;
       background: var(--bg);
       clip-path: ellipse(70% 100% at 50% 100%);
     }
+
     .hero-content {
       max-width: 800px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
+
     .hero-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       padding: 8px 20px;
       border-radius: 30px;
       font-size: 0.9rem;
       margin-bottom: 20px;
     }
+
     .hero h1 {
       font-size: clamp(2rem, 6vw, 3rem);
       font-weight: 900;
       margin-bottom: 16px;
       line-height: 1.3;
     }
+
     .hero-subtitle {
       font-size: 1.15rem;
       opacity: 0.95;
       margin-bottom: 30px;
     }
+
     .hero-info {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
     }
+
     .hero-info-item {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       padding: 10px 20px;
       border-radius: 10px;
     }
-    
+
     /* Container */
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    
+
     /* Section */
-    .section { padding: 50px 0; }
+    .section {
+      padding: 50px 0;
+    }
+
     .section-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -130,33 +162,47 @@
       align-items: center;
       gap: 10px;
     }
-    
+
     /* Card */
     .card {
       background: white;
       border-radius: 16px;
       padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
       margin-bottom: 20px;
     }
-    
+
     /* Info Grid */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
     }
+
     .info-card {
       background: white;
       padding: 20px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
-    .info-card-icon { font-size: 2rem; margin-bottom: 8px; }
-    .info-card-label { font-size: 0.85rem; color: var(--text-light); }
-    .info-card-value { font-size: 1.1rem; font-weight: 600; color: var(--primary-dark); }
-    
+
+    .info-card-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .info-card-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .info-card-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
     /* Schedule */
     .schedule-item {
       display: flex;
@@ -164,15 +210,27 @@
       padding: 20px 0;
       border-bottom: 1px solid var(--border);
     }
-    .schedule-item:last-child { border-bottom: none; }
+
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+
     .schedule-time {
       min-width: 110px;
       font-weight: 600;
       color: var(--primary);
       flex-shrink: 0;
     }
-    .schedule-content h4 { margin-bottom: 4px; }
-    .schedule-content p { color: var(--text-light); font-size: 0.9rem; }
+
+    .schedule-content h4 {
+      margin-bottom: 4px;
+    }
+
+    .schedule-content p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
     .schedule-tag {
       display: inline-block;
       background: var(--primary-light);
@@ -182,7 +240,7 @@
       font-size: 0.75rem;
       margin-left: 8px;
     }
-    
+
     /* Highlight Box */
     .highlight-box {
       background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
@@ -191,16 +249,21 @@
       padding: 24px;
       margin: 24px 0;
     }
+
     .highlight-box h4 {
       color: #92400E;
       margin-bottom: 12px;
     }
+
     .highlight-box ul {
       margin-left: 20px;
       color: #78350F;
     }
-    .highlight-box li { margin-bottom: 6px; }
-    
+
+    .highlight-box li {
+      margin-bottom: 6px;
+    }
+
     /* Course Photo */
     .course-photos {
       display: grid;
@@ -208,12 +271,13 @@
       gap: 16px;
       margin: 24px 0;
     }
+
     .course-photo {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-    
+
     /* Price Section */
     .price-section {
       background: linear-gradient(135deg, var(--accent-light) 0%, #FDE68A 100%);
@@ -223,6 +287,7 @@
       text-align: center;
       margin: 30px 0;
     }
+
     .price-badge {
       display: inline-block;
       background: var(--accent);
@@ -232,18 +297,24 @@
       font-weight: 600;
       margin-bottom: 16px;
     }
+
     .price-main {
       font-size: 3.5rem;
       font-weight: 900;
       color: #D97706;
     }
-    .price-main span { font-size: 1.2rem; }
+
+    .price-main span {
+      font-size: 1.2rem;
+    }
+
     .price-original {
       font-size: 1.2rem;
       color: var(--text-light);
       text-decoration: line-through;
       margin: 8px 0;
     }
+
     .price-save {
       display: inline-block;
       background: #DC2626;
@@ -253,6 +324,7 @@
       font-weight: 600;
       margin: 12px 0;
     }
+
     .price-deadline {
       background: white;
       padding: 12px 24px;
@@ -260,8 +332,11 @@
       display: inline-block;
       margin-top: 16px;
     }
-    .price-deadline strong { color: var(--error); }
-    
+
+    .price-deadline strong {
+      color: var(--error);
+    }
+
     /* Instructor */
     .instructor {
       display: flex;
@@ -269,8 +344,10 @@
       align-items: center;
       flex-wrap: wrap;
     }
+
     .instructor-avatar {
-      width: 120px; height: 120px;
+      width: 120px;
+      height: 120px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       border-radius: 50%;
       display: flex;
@@ -280,15 +357,29 @@
       color: white;
       flex-shrink: 0;
     }
-    .instructor-info { flex: 1; min-width: 250px; }
-    .instructor-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
-    .instructor-info > p { color: var(--text-light); margin-bottom: 12px; }
+
+    .instructor-info {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .instructor-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .instructor-info>p {
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
     .instructor-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       margin-top: 16px;
     }
+
     .instructor-links a {
       color: var(--primary);
       text-decoration: none;
@@ -298,19 +389,21 @@
       font-size: 0.9rem;
       transition: all 0.2s;
     }
+
     .instructor-links a:hover {
       background: var(--primary);
       color: white;
     }
-    
+
     /* FAQ */
     .faq-item {
       background: white;
       border-radius: 12px;
       margin-bottom: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
+
     .faq-q {
       padding: 16px 20px;
       font-weight: 600;
@@ -320,40 +413,65 @@
       justify-content: space-between;
       align-items: center;
     }
-    .faq-q::after { content: '+'; font-size: 1.3rem; }
-    .faq-item.open .faq-q::after { content: '−'; }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 1.3rem;
+    }
+
+    .faq-item.open .faq-q::after {
+      content: '−';
+    }
+
     .faq-a {
       padding: 0 20px 16px;
       color: var(--text-light);
       display: none;
     }
-    .faq-item.open .faq-a { display: block; }
-    
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
     /* Form */
     .form-section {
       background: white;
       border-radius: 20px;
       padding: 40px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
       margin: 40px 0;
     }
+
     .form-header {
       text-align: center;
       margin-bottom: 30px;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
     }
-    .form-header p { color: var(--text-light); margin-top: 8px; }
-    
-    .form-group { margin-bottom: 24px; }
+
+    .form-header p {
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
     .form-label {
       display: block;
       font-weight: 500;
       margin-bottom: 8px;
     }
-    .required { color: var(--error); margin-left: 4px; }
-    
-    .form-input, .form-select, .form-textarea {
+
+    .required {
+      color: var(--error);
+      margin-left: 4px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
       width: 100%;
       padding: 14px 16px;
       border: 2px solid var(--border);
@@ -362,15 +480,27 @@
       font-family: inherit;
       transition: all 0.2s;
     }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px var(--primary-light);
     }
-    .form-textarea { min-height: 100px; resize: vertical; }
-    
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
     /* Radio Options */
-    .options-group { display: flex; flex-direction: column; gap: 10px; }
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .option-item {
       display: flex;
       align-items: flex-start;
@@ -382,33 +512,42 @@
       border: 2px solid transparent;
       transition: all 0.2s;
     }
-    .option-item:hover { background: var(--primary-light); }
+
+    .option-item:hover {
+      background: var(--primary-light);
+    }
+
     .option-item.selected {
       background: var(--primary-light);
       border-color: var(--primary);
     }
+
     .option-item input {
       margin-top: 2px;
       accent-color: var(--primary);
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
     }
-    
+
     /* Payment Section */
     .payment-section {
       margin-top: 30px;
       padding-top: 30px;
       border-top: 2px solid var(--border);
     }
-    .payment-section > h3 {
+
+    .payment-section>h3 {
       text-align: center;
       margin-bottom: 20px;
       color: var(--primary-dark);
     }
+
     .payment-options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
     }
+
     .payment-option {
       border: 2px solid var(--border);
       border-radius: 16px;
@@ -417,14 +556,20 @@
       transition: all 0.2s;
       position: relative;
     }
-    .payment-option:hover { border-color: var(--primary); }
+
+    .payment-option:hover {
+      border-color: var(--primary);
+    }
+
     .payment-option.selected {
       border-color: var(--primary);
       background: var(--primary-light);
     }
+
     .payment-option-badge {
       position: absolute;
-      top: -12px; right: 16px;
+      top: -12px;
+      right: 16px;
       background: var(--accent);
       color: white;
       padding: 4px 14px;
@@ -432,33 +577,39 @@
       font-size: 0.8rem;
       font-weight: 600;
     }
+
     .payment-option h4 {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 12px;
     }
+
     .payment-option h4 input {
       accent-color: var(--primary);
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
     }
+
     .payment-option-price {
       font-size: 2rem;
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 8px;
     }
+
     .payment-option-price small {
       font-size: 1rem;
       color: var(--text-light);
       font-weight: 400;
     }
+
     .payment-option p {
       font-size: 0.9rem;
       color: var(--text-light);
       line-height: 1.6;
     }
-    
+
     /* Pay Method */
     .pay-method-section {
       display: none;
@@ -467,9 +618,21 @@
       background: var(--bg);
       border-radius: 12px;
     }
-    .pay-method-section.show { display: block; }
-    .pay-method-section h4 { margin-bottom: 12px; }
-    .pay-method-options { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .pay-method-section.show {
+      display: block;
+    }
+
+    .pay-method-section h4 {
+      margin-bottom: 12px;
+    }
+
+    .pay-method-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .pay-method-item {
       flex: 1;
       min-width: 100px;
@@ -481,10 +644,20 @@
       transition: all 0.2s;
       background: white;
     }
-    .pay-method-item:hover { border-color: var(--primary); }
-    .pay-method-item.selected { border-color: var(--primary); background: var(--primary-light); }
-    .pay-method-item input { display: none; }
-    
+
+    .pay-method-item:hover {
+      border-color: var(--primary);
+    }
+
+    .pay-method-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .pay-method-item input {
+      display: none;
+    }
+
     /* Bank Info */
     .bank-info {
       display: none;
@@ -494,17 +667,39 @@
       border-radius: 10px;
       border: 1px solid var(--border);
     }
-    .bank-info.show { display: block; }
-    .bank-info table { width: 100%; }
-    .bank-info td { padding: 6px 0; }
-    .bank-info td:first-child { color: var(--text-light); width: 80px; }
-    .bank-info td:last-child { font-weight: 600; }
+
+    .bank-info.show {
+      display: block;
+    }
+
+    .bank-info table {
+      width: 100%;
+    }
+
+    .bank-info td {
+      padding: 6px 0;
+    }
+
+    .bank-info td:first-child {
+      color: var(--text-light);
+      width: 80px;
+    }
+
+    .bank-info td:last-child {
+      font-weight: 600;
+    }
+
     .bank-last5 {
       margin-top: 12px;
       padding-top: 12px;
       border-top: 1px solid var(--border);
     }
-    .bank-last5 label { font-size: 0.9rem; color: var(--text-light); }
+
+    .bank-last5 label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
     .bank-last5 input {
       width: 150px;
       padding: 10px;
@@ -513,7 +708,7 @@
       margin-top: 8px;
       font-size: 1rem;
     }
-    
+
     /* Confirm */
     .confirm-box {
       background: var(--accent-light);
@@ -522,19 +717,22 @@
       padding: 20px;
       margin-top: 24px;
     }
+
     .confirm-box label {
       display: flex;
       align-items: flex-start;
       gap: 12px;
       cursor: pointer;
     }
+
     .confirm-box input {
       margin-top: 4px;
       accent-color: var(--primary);
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
     }
-    
+
     /* Submit */
     .submit-btn {
       width: 100%;
@@ -550,26 +748,39 @@
       transition: all 0.2s;
       font-family: inherit;
     }
+
     .submit-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(13, 148, 136, 0.4);
     }
+
     .submit-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
-    
+
     /* Success */
     .success-section {
       display: none;
       text-align: center;
       padding: 60px 20px;
     }
-    .success-section.show { display: block; }
-    .success-icon { font-size: 4rem; margin-bottom: 20px; }
-    .success-section h2 { color: var(--success); margin-bottom: 16px; }
-    
+
+    .success-section.show {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .success-section h2 {
+      color: var(--success);
+      margin-bottom: 16px;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -577,6 +788,7 @@
       background: var(--primary-dark);
       color: white;
     }
+
     .footer-links {
       display: flex;
       justify-content: center;
@@ -584,22 +796,55 @@
       margin-top: 16px;
       flex-wrap: wrap;
     }
-    .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; }
-    .footer-links a:hover { color: white; }
-    
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
-      .hero { padding: 40px 20px 80px; }
-      .form-section { padding: 24px; }
-      .instructor { flex-direction: column; text-align: center; }
-      .instructor-links { justify-content: center; }
-      .schedule-item { flex-direction: column; gap: 8px; }
-      .schedule-time { min-width: auto; }
-      .price-main { font-size: 2.8rem; }
-      .payment-options { grid-template-columns: 1fr; }
+      .hero {
+        padding: 40px 20px 80px;
+      }
+
+      .form-section {
+        padding: 24px;
+      }
+
+      .instructor {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .instructor-links {
+        justify-content: center;
+      }
+
+      .schedule-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .schedule-time {
+        min-width: auto;
+      }
+
+      .price-main {
+        font-size: 2.8rem;
+      }
+
+      .payment-options {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Loading -->
@@ -705,7 +950,7 @@
         <img src="photo2.jpg" alt="工作流範例" class="course-photo">
       </div>
       -->
-      
+
       <div class="highlight-box">
         <h4>🎁 課程成果：帶著「智能行事曆助理」回家！</h4>
         <ul>
@@ -739,7 +984,7 @@
           <div class="instructor-info">
             <h3>Nick Chang</h3>
             <p>環境工程轉職 → AI 自動化顧問<br>
-            自己也是程式小白出身，所以知道怎麼用你聽得懂的方式教你。</p>
+              自己也是程式小白出身，所以知道怎麼用你聽得懂的方式教你。</p>
             <p><strong>專長：</strong>n8n 工作流設計、Line OA 整合、Google API 串接</p>
             <div class="instructor-links">
               <a href="https://portaly.cc/zn.studio" target="_blank">🔗 個人網站</a>
@@ -778,6 +1023,10 @@
         <div class="faq-q">Q：課後有問題可以問嗎？</div>
         <div class="faq-a">A：可以！報名學員會加入 ZN Studio 學員專屬 Line 社群，課後有問題都可以發問。</div>
       </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：可以開發票嗎？</div>
+        <div class="faq-a">A：本課程由個人工作室開立，僅提供「個人領據」作為付款證明，無法開立統一編號發票。如需公司報帳，請先確認貴公司規定。</div>
+      </div>
     </section>
 
     <!-- 報名表單 -->
@@ -786,24 +1035,24 @@
         <h2 class="section-title" style="justify-content: center;">📝 立即報名</h2>
         <p>可選擇「立即付款搶早鳥」或「等確認開課再付款」</p>
       </div>
-      
+
       <form id="registrationForm">
         <!-- 基本資料 -->
         <div class="form-group">
           <label class="form-label">姓名<span class="required">*</span></label>
           <input type="text" class="form-input" name="name" required placeholder="請輸入姓名">
         </div>
-        
+
         <div class="form-group">
           <label class="form-label">Email<span class="required">*</span></label>
           <input type="email" class="form-input" name="email" required placeholder="確認信會寄到這裡">
         </div>
-        
+
         <div class="form-group">
           <label class="form-label">聯絡電話<span class="required">*</span></label>
           <input type="tel" class="form-input" name="phone" required placeholder="例：0912-345-678">
         </div>
-        
+
         <div class="form-group">
           <label class="form-label">Line ID（選填）</label>
           <input type="text" class="form-input" name="line" placeholder="方便課前聯繫">
@@ -915,7 +1164,7 @@
               <div class="payment-option-price">NT$ 3,900</div>
               <p>立即完成付款，鎖定早鳥優惠！<br>若未達開課人數，全額退費。</p>
             </div>
-            
+
             <div class="payment-option" data-choice="payLater">
               <h4>
                 <input type="radio" name="paymentChoice" value="payLater">
@@ -943,11 +1192,26 @@
             <!-- 銀行匯款資訊 -->
             <div class="bank-info" id="bankInfo">
               <table>
-                <tr><td>銀行</td><td>台新銀行（812）</td></tr>
-                <tr><td>分行</td><td>永和分行</td></tr>
-                <tr><td>戶名</td><td>張惟荏</td></tr>
-                <tr><td>帳號</td><td>2049-10-0006010-1</td></tr>
-                <tr><td>金額</td><td style="color:var(--error)">NT$ 3,900</td></tr>
+                <tr>
+                  <td>銀行</td>
+                  <td>台新銀行（812）</td>
+                </tr>
+                <tr>
+                  <td>分行</td>
+                  <td>永和分行</td>
+                </tr>
+                <tr>
+                  <td>戶名</td>
+                  <td>張惟荏</td>
+                </tr>
+                <tr>
+                  <td>帳號</td>
+                  <td>2049-10-0006010-1</td>
+                </tr>
+                <tr>
+                  <td>金額</td>
+                  <td style="color:var(--error)">NT$ 3,900</td>
+                </tr>
               </table>
               <div class="bank-last5">
                 <label>已完成匯款？請填寫帳號末 5 碼</label><br>
@@ -1009,7 +1273,7 @@
 
     // ===== 選項點擊效果 =====
     document.querySelectorAll('.option-item').forEach(item => {
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function () {
         const input = this.querySelector('input');
         const name = input.name;
         document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
@@ -1021,11 +1285,11 @@
 
     // ===== 付款選項切換 =====
     document.querySelectorAll('.payment-option').forEach(option => {
-      option.addEventListener('click', function() {
+      option.addEventListener('click', function () {
         document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
         this.classList.add('selected');
         this.querySelector('input[type="radio"]').checked = true;
-        
+
         const payMethodSection = document.getElementById('payMethodSection');
         if (this.dataset.choice === 'payNow') {
           payMethodSection.classList.add('show');
@@ -1037,10 +1301,10 @@
 
     // ===== 付款方式切換 =====
     document.querySelectorAll('.pay-method-item').forEach(item => {
-      item.addEventListener('click', function() {
+      item.addEventListener('click', function () {
         document.querySelectorAll('.pay-method-item').forEach(i => i.classList.remove('selected'));
         this.classList.add('selected');
-        
+
         const bankInfo = document.getElementById('bankInfo');
         if (this.querySelector('input').value === 'bank') {
           bankInfo.classList.add('show');
@@ -1051,18 +1315,18 @@
     });
 
     // ===== 表單提交 =====
-    document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    document.getElementById('registrationForm').addEventListener('submit', async function (e) {
       e.preventDefault();
-      
+
       const form = this;
       const submitBtn = document.getElementById('submitBtn');
       const loadingOverlay = document.getElementById('loadingOverlay');
       const ecpayOverlay = document.getElementById('ecpayOverlay');
-      
+
       // 收集資料（配合 n8n 欄位）
       const paymentChoice = form.paymentChoice.value;
       const payMethod = paymentChoice === 'payNow' ? form.payMethod.value : 'waitConfirm';
-      
+
       const formData = {
         // 基本欄位（配合你原本 n8n 的命名）
         name: form.name.value,
@@ -1088,29 +1352,29 @@
         source: form.source.value || '',
         paymentChoice: paymentChoice
       };
-      
+
       loadingOverlay.classList.add('show');
       submitBtn.disabled = true;
-      
+
       try {
         const response = await fetch(N8N_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
-        
+
         const result = await response.json();
         loadingOverlay.classList.remove('show');
-        
+
         if (result.success) {
           // 綠界付款
           if (result.ecpayParams && payMethod === 'ecpay') {
             ecpayOverlay.classList.add('show');
-            
+
             const ecpayForm = document.createElement('form');
             ecpayForm.method = 'POST';
             ecpayForm.action = result.ecpayUrl || 'https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5';
-            
+
             for (const key in result.ecpayParams) {
               const input = document.createElement('input');
               input.type = 'hidden';
@@ -1118,22 +1382,22 @@
               input.value = result.ecpayParams[key];
               ecpayForm.appendChild(input);
             }
-            
+
             document.body.appendChild(ecpayForm);
             setTimeout(() => ecpayForm.submit(), 1000);
-            
+
           } else {
             // 跳轉到成功頁面
             const baseUrl = 'https://nickleo051216.github.io/n8n2026course/course-success.html';
             let type = 'default';
             let amount = '3,900';
-            
+
             if (paymentChoice === 'payLater') {
               type = 'wait';
             } else if (payMethod === 'bank') {
               type = 'bank';
             }
-            
+
             const successUrl = `${baseUrl}?type=${type}&order=${result.orderId || ''}&name=${encodeURIComponent(formData.name)}&amount=${amount}`;
             window.location.href = successUrl;
           }
@@ -1151,4 +1415,5 @@
   </script>
 
 </body>
+
 </html>
