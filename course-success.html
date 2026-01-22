@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>報名結果｜ZN Studio n8n 實戰陪跑班</title>
+  <title>報名成功｜ZN Studio n8n 實戰陪跑班</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #0D9488;
-      --primary-dark: #0F766E;
-      --primary-light: #CCFBF1;
-      --accent: #F59E0B;
-      --accent-light: #FEF3C7;
-      --bg: #F0FDFA;
-      --text: #1F2937;
-      --text-light: #6B7280;
-      --success: #10B981;
-      --warning: #F59E0B;
-      --info: #3B82F6;
+      /* 春節紅金配色 */
+      --primary: #DC2626;      /* 喜氣紅 */
+      --primary-dark: #991B1B; /* 深紅 */
+      --primary-light: #FEF2F2;/* 淡紅背景 */
+      --accent: #F59E0B;       /* 開運金 */
+      --accent-light: #FFFBEB; /* 米黃背景 */
+      --bg: #FFF7ED;           /* 溫暖背景 */
+      --text: #451a03;         /* 深褐色文字 */
+      --text-light: #78350f;   /* 淺褐色 */
+      --success: #16a34a;      /* 成功綠 (保留功能性顏色) */
+      --warning: #ca8a04;
+      --info: #2563eb;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,6 +32,8 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background-image: radial-gradient(#FCA5A5 1px, transparent 1px);
+      background-size: 20px 20px;
     }
     
     .header {
@@ -38,8 +41,9 @@
       color: white;
       padding: 20px;
       text-align: center;
+      box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
     }
-    .header h1 { font-size: 1.2rem; font-weight: 500; }
+    .header h1 { font-size: 1.2rem; font-weight: 500; letter-spacing: 1px; }
     
     .main {
       flex: 1;
@@ -56,7 +60,30 @@
       max-width: 600px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 60px rgba(153, 27, 27, 0.1);
+      border: 2px solid #FECACA;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 裝飾 */
+    .result-card::before {
+      content: "🧨";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 2rem;
+      opacity: 0.2;
+      transform: rotate(-15deg);
+    }
+    .result-card::after {
+      content: "🧧";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2rem;
+      opacity: 0.2;
+      transform: rotate(15deg);
     }
     
     .result-icon {
@@ -69,10 +96,10 @@
       margin: 0 auto 24px;
       font-size: 3rem;
       animation: pop 0.5s ease-out;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
-    .result-icon.success { background: linear-gradient(135deg, var(--success) 0%, #059669 100%); }
-    .result-icon.warning { background: linear-gradient(135deg, var(--warning) 0%, #D97706 100%); }
-    .result-icon.info { background: linear-gradient(135deg, var(--info) 0%, #2563EB 100%); }
+    .result-icon.success { background: linear-gradient(135deg, #22c55e 0%, #15803d 100%); color: white; }
+    .result-icon.warning { background: linear-gradient(135deg, var(--accent) 0%, #b45309 100%); color: white; }
     
     @keyframes pop {
       0% { transform: scale(0); }
@@ -83,10 +110,10 @@
     .result-card h2 {
       font-size: 1.8rem;
       margin-bottom: 12px;
+      font-weight: 900;
     }
-    .result-card h2.success { color: var(--success); }
-    .result-card h2.warning { color: var(--warning); }
-    .result-card h2.info { color: var(--info); }
+    .result-card h2.success { color: #15803d; }
+    .result-card h2.warning { color: #b45309; }
     
     .result-card .subtitle {
       color: var(--text-light);
@@ -100,10 +127,8 @@
       margin: 24px 0;
       text-align: left;
     }
-    .info-box.light { background: var(--bg); }
-    .info-box.success { background: #ECFDF5; border: 1px solid #A7F3D0; }
+    .info-box.success { background: #F0FDF4; border: 1px solid #BBF7D0; }
     .info-box.warning { background: #FFFBEB; border: 1px solid #FCD34D; }
-    .info-box.info { background: #EFF6FF; border: 1px solid #BFDBFE; }
     
     .info-box h3 {
       font-size: 1rem;
@@ -111,17 +136,18 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--text);
     }
     
     .info-row {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px dashed #E5E7EB;
     }
     .info-row:last-child { border-bottom: none; }
     .info-row .label { color: var(--text-light); }
-    .info-row .value { font-weight: 600; }
+    .info-row .value { font-weight: 600; color: var(--text); }
     
     .bank-table {
       width: 100%;
@@ -129,7 +155,7 @@
     }
     .bank-table td {
       padding: 8px 0;
-      border-bottom: 1px solid #FCD34D;
+      border-bottom: 1px solid #fed7aa;
     }
     .bank-table td:first-child {
       color: var(--text-light);
@@ -139,6 +165,7 @@
       font-weight: 600;
       font-family: monospace;
       font-size: 1.05rem;
+      color: var(--primary-dark);
     }
     
     .steps {
@@ -167,11 +194,12 @@
     .step-content strong { color: var(--primary-dark); }
     
     .course-info {
-      background: linear-gradient(135deg, var(--primary-light) 0%, #A7F3D0 100%);
+      background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 100%);
       border-radius: 16px;
       padding: 24px;
       margin: 24px 0;
       text-align: left;
+      border: 2px dashed #FECACA;
     }
     .course-info h3 {
       font-size: 1rem;
@@ -203,10 +231,11 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
+      box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
     }
     .btn-secondary {
       background: white;
@@ -215,7 +244,7 @@
     }
     .btn-secondary:hover { background: var(--primary-light); }
     .btn-warning {
-      background: linear-gradient(135deg, var(--warning) 0%, #D97706 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, #D97706 100%);
       color: white;
     }
     
@@ -244,11 +273,11 @@
     .footer {
       text-align: center;
       padding: 30px 20px;
-      background: white;
+      background: var(--primary-dark);
       border-top: 1px solid #E5E7EB;
     }
-    .footer p { color: var(--text-light); font-size: 0.9rem; }
-    .footer a { color: var(--primary); text-decoration: none; }
+    .footer p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .footer a { color: #FCA5A5; text-decoration: none; }
     
     @media (max-width: 600px) {
       .result-card { padding: 30px 20px; }
@@ -268,7 +297,6 @@
   <main class="main">
     <div class="result-card">
       
-      <!-- ========== 1. 信用卡付款成功 ========== -->
       <div class="section" id="section-paid">
         <div class="result-icon success">🎉</div>
         <h2 class="success">付款成功！</h2>
@@ -286,11 +314,11 @@
           </div>
           <div class="info-row">
             <span class="label">付款金額</span>
-            <span class="value" style="color: var(--success);" id="paid-amount">NT$ 3,900</span>
+            <span class="value" style="color: #15803d; font-size: 1.1rem;" id="paid-amount">NT$ 5,000</span>
           </div>
           <div class="info-row">
             <span class="label">付款狀態</span>
-            <span class="value" style="color: var(--success);">✅ 已付款</span>
+            <span class="value" style="color: #15803d;">✅ 已付款</span>
           </div>
         </div>
         
@@ -311,7 +339,6 @@
         </div>
       </div>
       
-      <!-- ========== 2. 銀行匯款（待對帳）========== -->
       <div class="section" id="section-bank">
         <div class="result-icon warning">🏦</div>
         <h2 class="warning">報名登記完成！</h2>
@@ -324,11 +351,11 @@
             <tr><td>分行</td><td>永和分行</td></tr>
             <tr><td>戶名</td><td>張惟荏</td></tr>
             <tr><td>帳號</td><td>2049-10-0006010-1</td></tr>
-            <tr><td>金額</td><td style="color: #DC2626; font-size: 1.2rem;" id="bank-amount">NT$ 3,900</td></tr>
+            <tr><td>金額</td><td style="color: #DC2626; font-size: 1.3rem;" id="bank-amount">NT$ 5,000</td></tr>
           </table>
         </div>
         
-        <div class="info-box light">
+        <div class="info-box" style="background: #fff; border: 1px dashed #ccc;">
           <h3>📋 您的訂單</h3>
           <div class="info-row">
             <span class="label">訂單編號</span>
@@ -345,7 +372,7 @@
         </div>
         
         <div class="steps">
-          <h4 style="margin-bottom: 12px;">⚠️ 匯款後請務必通知：</h4>
+          <h4 style="margin-bottom: 12px; color: var(--primary);">⚠️ 匯款後請務必通知：</h4>
           <div class="step">
             <div class="step-num">1</div>
             <div class="step-content">完成匯款後，請加入 Line 官方帳號</div>
@@ -365,71 +392,9 @@
         </div>
       </div>
       
-      <!-- ========== 3. 等確認開課 ========== -->
-      <div class="section" id="section-wait">
-        <div class="result-icon info">📝</div>
-        <h2 class="info">已登記報名！</h2>
-        <p class="subtitle">我們會在確認開課後通知您付款</p>
-        
-        <div class="info-box info">
-          <h3>📋 報名資訊</h3>
-          <div class="info-row">
-            <span class="label">訂單編號</span>
-            <span class="value" id="wait-orderId">-</span>
-          </div>
-          <div class="info-row">
-            <span class="label">報名學員</span>
-            <span class="value" id="wait-name">-</span>
-          </div>
-          <div class="info-row">
-            <span class="label">報名狀態</span>
-            <span class="value" style="color: var(--info);">📝 已登記，等待開課通知</span>
-          </div>
-        </div>
-        
-        <div class="info-box light">
-          <h3>📅 接下來會發生什麼？</h3>
-          <div class="steps">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div class="step-content"><strong>1/19 前</strong>：我們會確認是否達到開課人數（4人）</div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div class="step-content"><strong>確認開課</strong>：會寄 Email 通知您付款</div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div class="step-content"><strong>3 天內付款</strong>：即可享早鳥價 <strong style="color: var(--success);">NT$ 3,900</strong></div>
-            </div>
-            <div class="step">
-              <div class="step-num">4</div>
-              <div class="step-content"><strong>逾期付款</strong>：以原價 NT$ 5,000 計算</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="course-info">
-          <h3>📅 課程資訊</h3>
-          <ul>
-            <li><span>🗓️</span><span><strong>日期：</strong>2026/02/07（六）</span></li>
-            <li><span>⏰</span><span><strong>時間：</strong>09:00 - 16:00</span></li>
-            <li><span>📍</span><span><strong>地點：</strong>台北市區（近捷運）</span></li>
-            <li><span>👥</span><span><strong>開課人數：</strong>4 人以上</span></li>
-          </ul>
-        </div>
-        
-        <div class="cta-section">
-          <p>📱 先加入 Line，有最新消息會第一時間通知！</p>
-          <a href="https://lin.ee/Faz0doj" target="_blank" class="btn btn-primary">👉 加入 ZN Studio Line</a>
-          <a href="https://reurl.cc/1OZNAY" target="_blank" class="btn btn-secondary">👥 加入 Line 社群</a>
-        </div>
-      </div>
-      
-      <!-- ========== 4. 預設/錯誤 ========== -->
       <div class="section" id="section-default">
-        <div class="result-icon info">📋</div>
-        <h2 class="info">報名資訊</h2>
+        <div class="result-icon warning">📋</div>
+        <h2 class="warning">報名資訊</h2>
         <p class="subtitle">如有任何問題，歡迎聯繫我們</p>
         
         <div class="cta-section">
@@ -452,21 +417,28 @@
   <script>
     // ===== 從 URL 取得參數 =====
     const urlParams = new URLSearchParams(window.location.search);
-    const type = urlParams.get('type') || 'default';  // paid, bank, wait
+    const type = urlParams.get('type') || 'default';  // paid, bank
     const orderId = urlParams.get('order') || '-';
     const name = urlParams.get('name') || '-';
-    const amount = urlParams.get('amount') || '3,900';
+    
+    // ★★★ 修正點：預設金額改為 5,000 ★★★
+    const amount = urlParams.get('amount') || '5,000';
     
     // ===== 顯示對應區塊 =====
     const sectionMap = {
       'paid': 'section-paid',
       'bank': 'section-bank',
-      'wait': 'section-wait',
+      // 移除了 wait, 因為已經確定開課
       'default': 'section-default'
     };
     
     const sectionId = sectionMap[type] || 'section-default';
-    document.getElementById(sectionId).classList.add('active');
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) {
+        activeSection.classList.add('active');
+    } else {
+        document.getElementById('section-default').classList.add('active');
+    }
     
     // ===== 填入資料 =====
     const decodedName = decodeURIComponent(name);
@@ -486,16 +458,10 @@
       document.getElementById('bank-amount').textContent = `NT$ ${amount}`;
     }
     
-    // 等確認開課
-    if (type === 'wait') {
-      document.getElementById('wait-orderId').textContent = orderId;
-      document.getElementById('wait-name').textContent = decodedName;
-    }
-    
-    // ===== 撒花效果 =====
+    // ===== 撒花效果 (喜氣金/紅配色) =====
     function createConfetti() {
       const confettiContainer = document.getElementById('confetti');
-      const colors = ['#0D9488', '#F59E0B', '#10B981', '#3B82F6', '#EC4899', '#8B5CF6'];
+      const colors = ['#DC2626', '#F59E0B', '#FCA5A5', '#FEF3C7', '#B91C1C']; // 改成紅金色系
       
       for (let i = 0; i < 50; i++) {
         setTimeout(() => {
