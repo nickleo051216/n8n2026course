@@ -994,9 +994,8 @@
     <div class="price-badge" style="background: #EF4444;">🔥 確定開課・最後加碼</div>
     
     <div style="margin-bottom: 20px;">
-      <div style="font-size: 1.2rem; font-weight: bold; color: #0D9488;">單人早鳥</div>
-      <div class="price-main" style="font-size: 2.5rem;"><span>NT$</span> 3,900</div>
-      <div class="price-save">現省 $1,100</div>
+      <div style="font-size: 1.2rem; font-weight: bold; color: #0D9488;">單人優惠</div>
+      <div class="price-main" style="font-size: 2.5rem;"><span>NT$</span> 5,000</div>
     </div>
 
     <div style="background: white; border-radius: 12px; padding: 15px; border: 2px dashed #F59E0B;">
@@ -1060,10 +1059,6 @@
         <div class="faq-a">A：下午的時段會根據你的需求，協助你完成想要的自動化流程。不管是 Line 機器人、自動寄信、表單整理，只要說得出來，我們就一起做。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Q：最少幾人開課？</div>
-        <div class="faq-a">A：4 人以上開課。我們會在 1/19 確認是否開課，若未達標會提前通知並全額退費。</div>
-      </div>
-      <div class="faq-item">
         <div class="faq-q">Q：課後有問題可以問嗎？</div>
         <div class="faq-a">A：可以！報名學員會加入 ZN Studio 學員專屬 Line 社群，課後有問題都可以發問。</div>
       </div>
@@ -1077,7 +1072,7 @@
     <section class="form-section" id="formSection">
       <div class="form-header">
         <h2 class="section-title" style="justify-content: center;">📝 立即報名</h2>
-        <p>可選擇「立即付款搶早鳥」或「等確認開課再付款」</p>
+        <p>可選擇「單人優惠」或「春節雙人大優惠」</p>
       </div>
 
       <form id="registrationForm">
@@ -1276,7 +1271,7 @@
                 </tr>
                 <tr>
                   <td>金額</td>
-                  <td style="color:var(--error)">NT$ 3,900</td>
+                  <td style="color:var(--error)" id="bankDisplayAmount">NT$ 5,000</td>
                 </tr>
               </table>
               <div class="bank-last5">
@@ -1398,7 +1393,7 @@
       });
     });
 
-// ===== 付款選項切換 (修正版) =====
+// ===== 付款選項切換 (含金額連動修正版) =====
     document.querySelectorAll('.payment-option').forEach(option => {
       option.addEventListener('click', function () {
         // 1. 處理視覺上的選取狀態
@@ -1408,13 +1403,22 @@
 
         // 2. 顯示付款方式區塊
         const payMethodSection = document.getElementById('payMethodSection');
-        
-        // 修正重點：只要是 "single" (單人) 或 "group" (雙人)，都要顯示付款方式
         if (this.dataset.choice === 'single' || this.dataset.choice === 'group') {
           payMethodSection.classList.add('show');
-        } else {
-          // 如果未來有 "稍後付款" 的選項才需要隱藏，目前其實用不到這行
-          payMethodSection.classList.remove('show');
+        }
+
+        // 3. (新增) 自動切換銀行匯款顯示金額
+        const bankDisplay = document.getElementById('bankDisplayAmount');
+        if (bankDisplay) {
+          if (this.dataset.choice === 'group') {
+            // 選雙人 -> 顯示 7,500
+            bankDisplay.textContent = 'NT$ 7,500';
+            // 也可以貼心加上備註 (選擇性)
+            // bankDisplay.innerHTML = 'NT$ 7,500 <span style="font-size:0.8rem; color:#666">(雙人價)</span>';
+          } else {
+            // 選單人 -> 顯示 5,000
+            bankDisplay.textContent = 'NT$ 5,000';
+          }
         }
       });
     });
