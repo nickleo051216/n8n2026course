@@ -841,6 +841,40 @@
       .payment-options {
         grid-template-columns: 1fr;
       }
+
+      /* 新增：春節限定樣式 */
+.cny-card {
+  background: linear-gradient(135deg, #FFF1F2 0%, #FFF7ED 100%); /* 淡紅到淡橘 */
+  border: 2px solid #FECACA; /* 淡紅框 */
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.cny-card:hover {
+  transform: translateY(-5px); /* 滑鼠移過去會浮起來 */
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+}
+
+/* 雙人特惠卡片 (特別顯眼) */
+.cny-card.highlight {
+  background: #FEF2F2;
+  border: 2px solid #DC2626; /* 深紅框 */
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+}
+
+.cny-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
     }
   </style>
 </head>
@@ -899,8 +933,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-icon">👥</div>
-          <div class="info-card-label">開課人數</div>
-          <div class="info-card-value">4 人以上</div>
+          <div class="info-card-label">名額限制</div>
+          <div class="info-card-value">15 人</div>
         </div>
       </div>
     </section>
@@ -989,31 +1023,61 @@
 
     <!-- 價格 -->
     <section class="section">
-<div class="price-section" id="priceSection">
-  <div id="earlyBirdPrice">
-    <div class="price-badge" style="background: #EF4444;">🔥 確定開課・最後加碼</div>
-    
-    <div style="margin-bottom: 20px;">
-      <div style="font-size: 1.2rem; font-weight: bold; color: #0D9488;">單人優惠</div>
-      <div class="price-main" style="font-size: 2.5rem;"><span>NT$</span> 5,000</div>
-    </div>
+<div class="price-section" id="priceSection" style="background: linear-gradient(135deg, #FEF2F2 0%, #FFFBEB 100%); border: 3px solid #DC2626; border-radius: 24px; position: relative; overflow: hidden;">
+  
+  <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.05; transform: rotate(15deg);">🧧</div>
+  <div style="position: absolute; bottom: -20px; left: -20px; font-size: 8rem; opacity: 0.05; transform: rotate(-15deg);">🧨</div>
 
-    <div style="background: white; border-radius: 12px; padding: 15px; border: 2px dashed #F59E0B;">
-      <div style="font-size: 1.1rem; font-weight: bold; color: #D97706;">👯 雙人同行 (第2人半價)</div>
-      <div class="price-main" style="font-size: 2.5rem; color: #D97706;"><span>NT$</span> 7,500</div>
-      <div style="color: #78350F; font-size: 0.9rem;">平均每人只要 $3,750！</div>
-    </div>
-
-    <div class="price-deadline" style="margin-top: 20px;">
-      ⏰ 最後報名：<strong>2026/02/02</strong>
-      <div id="countdown" style="margin-top: 8px; font-size: 1.1rem; color: #DC2626;"></div>
-    </div>
+  <div style="text-align: center; margin-bottom: 30px; position: relative; z-index: 1;">
+    <span style="background: linear-gradient(to right, #DC2626, #B91C1C); color: #FEF3C7; padding: 8px 24px; border-radius: 50px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); border: 1px solid #FCA5A5;">
+      🧨 蛇年開春第一課・確定開課
+    </span>
+    <h2 style="color: #991B1B; margin-top: 16px; font-size: 1.8rem; font-weight: 900;">
+      善用年終，投資你的 AI 競爭力
+    </h2>
   </div>
 
-  <div id="regularPrice" style="display: none;">
-    <div class="price-badge" style="background: #6B7280;">📌 恢復原價</div>
-    <div class="price-main"><span>NT$</span> 5,000</div>
-    <div style="color: var(--text-light); margin-top: 8px;">早鳥優惠已截止</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; position: relative; z-index: 1;">
+    
+    <div class="cny-card" style="flex: 1; min-width: 280px;">
+      <div class="cny-badge" style="background: #4B5563;">💼 獨自進修</div>
+      <h3 style="color: #1F2937; font-size: 1.25rem; margin-bottom: 5px;">單人實戰票</h3>
+      <div style="font-size: 2.8rem; font-weight: 900; color: #374151; line-height: 1.2;">
+        <span style="font-size: 1rem; font-weight: normal; color: #6B7280;">NT$</span> 5,000
+      </div>
+      <p style="color: #4B5563; font-size: 0.95rem; margin-top: 12px; line-height: 1.6;">
+        把年終獎金變成專業技能<br>
+        <span style="color: #DC2626; font-weight: bold;">年後轉職/升遷必備</span>
+      </p>
+    </div>
+
+    <div class="cny-card highlight" style="flex: 1; min-width: 280px;">
+      <div style="position: absolute; top: -12px; right: 50%; transform: translateX(50%); background: #DC2626; color: #FEF3C7; padding: 4px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        🧧 新春最划算
+      </div>
+      
+      <div class="cny-badge" style="background: linear-gradient(to right, #F59E0B, #D97706);">👯 好事成雙</div>
+      <h3 style="color: #B45309; font-size: 1.25rem; margin-bottom: 5px;">雙人同行方案</h3>
+      
+      <div style="font-size: 2.8rem; font-weight: 900; color: #DC2626; line-height: 1.2;">
+        <span style="font-size: 1rem; font-weight: normal; color: #991B1B;">NT$</span> 7,500
+      </div>
+      
+      <div style="background: #FEF3C7; color: #B45309; display: inline-block; padding: 6px 16px; border-radius: 8px; font-weight: bold; margin: 10px 0; border: 1px solid #FCD34D;">
+        💰 每人只要 $3,750
+      </div>
+      
+      <p style="color: #991B1B; font-size: 0.95rem; line-height: 1.6;">
+        第 2 人半價 = <strong style="text-decoration: underline;">現省 $2,500</strong><br>
+        找朋友一起學，紅包省更多！
+      </p>
+    </div>
+
+  </div>
+
+  <div class="price-deadline" style="margin-top: 25px; background: rgba(255, 255, 255, 0.8); border: 1px dashed #DC2626; color: #991B1B;">
+    ⏰ 報名截止：<strong>2026/02/02 (初十五)</strong>
+    <div id="countdown" style="margin-top: 8px; font-size: 1.2rem; font-weight: bold; color: #DC2626;"></div>
   </div>
 </div>
     </section>
@@ -1216,7 +1280,7 @@
       <input type="radio" name="paymentChoice" value="single" checked>
       👤 單人早鳥票
     </h4>
-    <div class="payment-option-price">NT$ 3,900</div>
+    <div class="payment-option-price">NT$ 5,000</div>
     <p>把握年後轉職、進修好時機！<br>確定開課，最後倒數。</p>
   </div>
 
