@@ -989,25 +989,34 @@
 
     <!-- 價格 -->
     <section class="section">
-      <div class="price-section" id="priceSection">
-        <!-- 早鳥版本 (預設顯示) -->
-        <div id="earlyBirdPrice">
-          <div class="price-badge">🐦 早鳥優惠中</div>
-          <div class="price-main"><span>NT$</span> 3,900</div>
-          <div class="price-original">原價 NT$ 5,000</div>
-          <div class="price-save">🔥 現省 $1,100！</div>
-          <div class="price-deadline">
-            ⏰ 早鳥截止：<strong>2026/01/19</strong>
-            <div id="countdown" style="margin-top: 8px; font-size: 1.1rem; color: #DC2626;"></div>
-          </div>
-        </div>
-        <!-- 原價版本 (早鳥結束後顯示) -->
-        <div id="regularPrice" style="display: none;">
-          <div class="price-badge" style="background: #6B7280;">📌 一般價格</div>
-          <div class="price-main"><span>NT$</span> 5,000</div>
-          <div style="color: var(--text-light); margin-top: 8px;">早鳥優惠已結束</div>
-        </div>
-      </div>
+<div class="price-section" id="priceSection">
+  <div id="earlyBirdPrice">
+    <div class="price-badge" style="background: #EF4444;">🔥 確定開課・最後加碼</div>
+    
+    <div style="margin-bottom: 20px;">
+      <div style="font-size: 1.2rem; font-weight: bold; color: #0D9488;">單人早鳥</div>
+      <div class="price-main" style="font-size: 2.5rem;"><span>NT$</span> 3,900</div>
+      <div class="price-save">現省 $1,100</div>
+    </div>
+
+    <div style="background: white; border-radius: 12px; padding: 15px; border: 2px dashed #F59E0B;">
+      <div style="font-size: 1.1rem; font-weight: bold; color: #D97706;">👯 雙人同行 (第2人半價)</div>
+      <div class="price-main" style="font-size: 2.5rem; color: #D97706;"><span>NT$</span> 7,500</div>
+      <div style="color: #78350F; font-size: 0.9rem;">平均每人只要 $3,750！</div>
+    </div>
+
+    <div class="price-deadline" style="margin-top: 20px;">
+      ⏰ 最後報名：<strong>2026/02/02</strong>
+      <div id="countdown" style="margin-top: 8px; font-size: 1.1rem; color: #DC2626;"></div>
+    </div>
+  </div>
+
+  <div id="regularPrice" style="display: none;">
+    <div class="price-badge" style="background: #6B7280;">📌 恢復原價</div>
+    <div class="price-main"><span>NT$</span> 5,000</div>
+    <div style="color: var(--text-light); margin-top: 8px;">早鳥優惠已截止</div>
+  </div>
+</div>
     </section>
 
     <!-- 講師 -->
@@ -1202,28 +1211,32 @@
         </div>
 
         <!-- 付款選項 -->
-        <div class="payment-section">
-          <h3>💳 選擇報名方式</h3>
-          <div class="payment-options">
-            <div class="payment-option selected" data-choice="payNow">
-              <div class="payment-option-badge">推薦</div>
-              <h4>
-                <input type="radio" name="paymentChoice" value="payNow" checked>
-                🔥 立即付款搶早鳥
-              </h4>
-              <div class="payment-option-price">NT$ 3,900</div>
-              <p>立即完成付款，鎖定早鳥優惠！<br>若未達開課人數，全額退費。</p>
-            </div>
+<div class="payment-section">
+  <h3>💳 選擇報名方案</h3>
+  <div class="payment-options">
+    
+    <div class="payment-option selected" data-choice="single">
+      <h4>
+        <input type="radio" name="paymentChoice" value="single" checked>
+        👤 單人早鳥票
+      </h4>
+      <div class="payment-option-price">NT$ 3,900</div>
+      <p>確定開課！把握最後優惠期限。</p>
+    </div>
 
-            <div class="payment-option" data-choice="payLater">
-              <h4>
-                <input type="radio" name="paymentChoice" value="payLater">
-                ⏳ 等確認開課再付
-              </h4>
-              <div class="payment-option-price">NT$ 3,900 <small>~ 5,000</small></div>
-              <p>1/19 前通知是否開課<br>確認後 3 天內付款享早鳥價<br>逾期以原價 $5,000 計算</p>
-            </div>
-          </div>
+    <div class="payment-option" data-choice="group">
+      <div class="payment-option-badge">最划算</div>
+      <h4>
+        <input type="radio" name="paymentChoice" value="group">
+        👯 雙人同行優惠
+      </h4>
+      <div class="payment-option-price">NT$ 7,500 <small>(均價 3,750)</small></div>
+      <p>第 2 人半價優惠！<br><span style="color:#d97706; font-weight:bold;">請在備註欄填寫第 2 位夥伴的姓名/Email</span></p>
+    </div>
+
+  </div>
+
+  </div>
 
           <!-- 付款方式 -->
           <div class="pay-method-section show" id="payMethodSection">
@@ -1317,8 +1330,10 @@
     const N8N_WEBHOOK_URL = 'https://nickleo9.zeabur.app/webhook/course-registration2026';
 
     // ===== 早鳥倒數計時器 =====
-    const EARLY_BIRD_DEADLINE = new Date('2026-01-19T23:59:59+08:00');
+    // ===== 修改後：更新為 2/2，並加入雙人方案價格變數 =====
+    const EARLY_BIRD_DEADLINE = new Date('2026-02-02T23:59:59+08:00');
     const EARLY_BIRD_PRICE = 3900;
+    const GROUP_PRICE = 7500; // 雙人同行價
     const REGULAR_PRICE = 5000;
 
     function updateCountdown() {
@@ -1422,7 +1437,7 @@
 
       // 收集資料（配合 n8n 欄位）
       const paymentChoice = form.paymentChoice.value;
-      const payMethod = paymentChoice === 'payNow' ? form.payMethod.value : 'waitConfirm';
+      const payMethod = form.payMethod.value;
 
       const formData = {
         // === 基本資料 ===
