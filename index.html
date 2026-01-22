@@ -1576,7 +1576,7 @@
             // 跳轉到成功頁面
             const baseUrl = 'https://nickleo051216.github.io/n8n2026course/course-success.html';
             let type = 'default';
-            let amount = '3,900';
+            let amount = (paymentChoice === 'group') ? '7,500' : '5,000';
 
             if (paymentChoice === 'payLater') {
               type = 'wait';
