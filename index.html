@@ -1398,41 +1398,34 @@
     const GROUP_PRICE = 7500; // 雙人同行價
     const REGULAR_PRICE = 5000;
 
+// ===== 倒數計時器 (修正版) =====
     function updateCountdown() {
       const now = new Date();
       const diff = EARLY_BIRD_DEADLINE - now;
-
       const countdownEl = document.getElementById('countdown');
-      const earlyBirdEl = document.getElementById('earlyBirdPrice');
-      const regularPriceEl = document.getElementById('regularPrice');
-      const paymentPriceEls = document.querySelectorAll('.payment-option-price');
+      const submitBtn = document.getElementById('submitBtn'); // 取得報名按鈕
 
+      // 如果時間到了 (報名截止)
       if (diff <= 0) {
-        // 早鳥已結束
-        if (earlyBirdEl) earlyBirdEl.style.display = 'none';
-        if (regularPriceEl) regularPriceEl.style.display = 'block';
-        // 更新付款區塊價格
-        paymentPriceEls.forEach(el => {
-          if (el.textContent.includes('3,900')) {
-            el.innerHTML = 'NT$ 5,000';
-          }
-        });
+        if (countdownEl) {
+          countdownEl.innerHTML = '<span style="color: #4B5563;">❌ 報名已截止</span>';
+        }
+        // 選擇性：截止後停用報名按鈕，避免誤報
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = '報名已結束';
+          submitBtn.style.background = '#9CA3AF'; // 變灰色
+        }
         return;
       }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000); // 想要秒數也可以加回來
 
       if (countdownEl) {
-        if (days > 0) {
-          countdownEl.textContent = `⏳ 剩餘 ${days} 天 ${hours} 小時 ${minutes} 分`;
-        } else if (hours > 0) {
-          countdownEl.textContent = `⏳ 剩餘 ${hours} 小時 ${minutes} 分 ${seconds} 秒`;
-        } else {
-          countdownEl.textContent = `⏳ 剩餘 ${minutes} 分 ${seconds} 秒`;
-        }
+        countdownEl.textContent = `⏳ 剩餘 ${days} 天 ${hours} 小時 ${minutes} 分 $${seconds} 秒`;
       }
     }
 
