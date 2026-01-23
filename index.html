@@ -1060,7 +1060,7 @@
       <h3 style="color: #B45309; font-size: 1.25rem; margin-bottom: 5px;">雙人同行方案</h3>
       
       <div style="font-size: 2.8rem; font-weight: 900; color: #DC2626; line-height: 1.2;">
-        <span style="font-size: 1rem; font-weight: normal; color: #991B1B;">NT$</span> 7,500
+        <span style="font-size: 1rem; font-weight: normal; color: #991B1B;">NT$</span> 8,000
       </div>
       
       <div style="background: #FEF3C7; color: #B45309; display: inline-block; padding: 6px 16px; border-radius: 8px; font-weight: bold; margin: 10px 0; border: 1px solid #FCD34D;">
@@ -1290,7 +1290,7 @@
       <input type="radio" name="paymentChoice" value="group">
       👯 雙人同行 (第2人半價)
     </h4>
-    <div class="payment-option-price">NT$ 7,500 <small>(均價 3,750)</small></div>
+    <div class="payment-option-price">NT$ 8,000 <small>(均價 3,750)</small></div>
     <p>呼朋引伴來學 AI 自動化！<br><span style="color:#d97706; font-weight:bold;">記得在備註欄填寫夥伴姓名/email 喔</span></p>
   </div>
 
@@ -1468,10 +1468,10 @@
         const bankDisplay = document.getElementById('bankDisplayAmount');
         if (bankDisplay) {
           if (this.dataset.choice === 'group') {
-            // 選雙人 -> 顯示 7,500
-            bankDisplay.textContent = 'NT$ 7,500';
+            // 選雙人 -> 顯示 8,000
+            bankDisplay.textContent = 'NT$ 8,000';
             // 也可以貼心加上備註 (選擇性)
-            // bankDisplay.innerHTML = 'NT$ 7,500 <span style="font-size:0.8rem; color:#666">(雙人價)</span>';
+            // bankDisplay.innerHTML = 'NT$ 8,000 <span style="font-size:0.8rem; color:#666">(雙人價)</span>';
           } else {
             // 選單人 -> 顯示 5,000
             bankDisplay.textContent = 'NT$ 5,000';
@@ -1569,7 +1569,7 @@
             // 跳轉到成功頁面
             const baseUrl = 'https://nickleo051216.github.io/n8n2026course/course-success.html';
             let type = 'default';
-            let amount = (paymentChoice === 'group') ? '7,500' : '5,000';
+            let amount = (paymentChoice === 'group') ? '8,000' : '5,000';
 
             if (paymentChoice === 'payLater') {
               type = 'wait';
